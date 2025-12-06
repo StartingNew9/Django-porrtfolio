@@ -2,54 +2,62 @@
 <html>
 
 <head>
-    <title>{{ profile.name }} | About</title>
+    <title>About | {{ profile.name }}</title>
 </head>
 
 <body style="margin:0; background:#0f172a; color:white; font-family:Arial, sans-serif;">
 
     <!-- HEADER -->
-    <div style="background:#020617; padding:40px; text-align:center; border-bottom: 2px solid #22d3ee;">
-        <h1 style="margin:0; font-size:40px; color:#22d3ee;">About {{ profile.name }}</h1>
-        <p style="margin-top:10px; font-size:20px; color:#cbd5e1;">{{ profile.title }}</p>
+    <div style="background:#020617; padding:40px; text-align:center; border-bottom:2px solid #22d3ee;">
+        <a href="{% url 'home' %}" style="text-decoration:none;">
+            <h1 style="margin:0; font-size:40px; color:#22d3ee;">{{ profile.name }}</h1>
+        </a>
+        <p style="margin-top:10px; font-size:20px; color:#cbd5e1;">About Me</p>
     </div>
 
-    <!-- BIO SECTION -->
-    <div
-        style="max-width:800px; margin:50px auto; padding:20px; text-align:center; border:1px solid #334155; border-radius:15px; background:#1e293b;">
-        <h2 style="color:#38bdf8;">Profile</h2>
-        <p style="line-height:1.8; font-size:17px; color:#e2e8f0;">
-            {{ profile.bio }}
-        </p>
+    <!-- NAVBAR -->
+    <div style="text-align:center; padding:20px; background:#020617;">
+        <a href="{% url 'home' %}" style="text-decoration:none; color:#22d3ee; font-size:17px; margin:15px;">Home</a>
+        <a href="{% url 'about' %}" style="text-decoration:none; color:#22d3ee; font-size:17px; margin:15px;">About</a>
+        <a href="{% url 'projects' %}"
+            style="text-decoration:none; color:#22d3ee; font-size:17px; margin:15px;">Projects</a>
+        <a href="{% url 'contact' %}"
+            style="text-decoration:none; color:#22d3ee; font-size:17px; margin:15px;">Contact</a>
     </div>
 
-    <!-- SKILLS SECTION -->
+    <!-- BIO / PROFILE -->
     <div
-        style="max-width:800px; margin:50px auto; padding:20px; border:1px solid #334155; border-radius:15px; background:#1e293b;">
-        <h2 style="text-align:center; color:#fbbf24;">Skills</h2>
-        <div style="display:flex; flex-wrap:wrap; justify-content:center;">
-            {% for skill in skills %}
-            <div style="
-                background:#0f172a;
-                margin:10px;
-                padding:12px 20px;
-                border-radius:20px;
-                border:1px solid #334155;
-                font-size:15px;">
-                {{ skill.name }}
-            </div>
-            {% endfor %}
+        style="max-width:800px; margin:60px auto; padding:30px; background:#1e293b; border-radius:15px; border:1px solid #334155; text-align:center;">
+        <h2 style="color:#38bdf8; margin-bottom:20px;">Bio</h2>
+        <p style="color:#e2e8f0; font-size:16px; line-height:1.8;">{{ profile.bio }}</p>
+    </div>
+
+    <!-- EXPERIENCE -->
+    {% if profile.experience %}
+    <div style="max-width:900px; margin:50px auto; display:flex; flex-wrap:wrap; justify-content:center; gap:25px;">
+        {% for exp in profile.experience.splitlines %}
+        <div
+            style="background:#1e293b; padding:20px; border-radius:15px; border:1px solid #334155; width:280px; text-align:center;">
+            <p style="color:#e2e8f0; font-size:14px;">{{ exp }}</p>
         </div>
+        {% endfor %}
     </div>
+    {% endif %}
 
-    <!-- NAVIGATION -->
-    <div style="text-align:center; margin:40px;">
-        <a href="/" style="text-decoration:none; color:#22d3ee; font-size:18px; margin:15px;">Home</a>
-        <a href="/projects" style="text-decoration:none; color:#22d3ee; font-size:18px; margin:15px;">Projects</a>
-        <a href="/contact" style="text-decoration:none; color:#22d3ee; font-size:18px; margin:15px;">Contact</a>
+    <!-- GOALS -->
+    {% if profile.goals %}
+    <div style="max-width:900px; margin:50px auto; display:flex; flex-wrap:wrap; justify-content:center; gap:25px;">
+        {% for goal in profile.goals.splitlines %}
+        <div
+            style="background:#1e293b; padding:20px; border-radius:15px; border:1px solid #334155; width:280px; text-align:center;">
+            <p style="color:#fbbf24; font-size:14px;">{{ goal }}</p>
+        </div>
+        {% endfor %}
     </div>
+    {% endif %}
 
     <!-- FOOTER -->
-    <div style="background:#020617; padding:15px; text-align:center; color:#64748b;">
+    <div style="background:#020617; padding:20px; text-align:center; color:#64748b; margin-top:50px;">
         © 2025 {{ profile.name }} — Django Portfolio
     </div>
 
