@@ -25,36 +25,35 @@
             style="text-decoration:none; color:#22d3ee; font-size:17px; margin:15px;">Contact</a>
     </div>
 
-    <!-- BIO / PROFILE -->
-    <div
-        style="max-width:800px; margin:60px auto; padding:30px; background:#1e293b; border-radius:15px; border:1px solid #334155; text-align:center;">
-        <h2 style="color:#38bdf8; margin-bottom:20px;">Bio</h2>
-        <p style="color:#e2e8f0; font-size:16px; line-height:1.8;">{{ profile.bio }}</p>
-    </div>
+    <!-- ABOUT DETAILS -->
+    <div style="max-width:900px; margin:60px auto; display:flex; flex-wrap:wrap; justify-content:center; gap:15px;">
 
-    <!-- EXPERIENCE -->
-    {% if profile.experience %}
-    <div style="max-width:900px; margin:50px auto; display:flex; flex-wrap:wrap; justify-content:center; gap:25px;">
-        {% for exp in profile.experience.splitlines %}
+        <!-- Bio -->
         <div
             style="background:#1e293b; padding:20px; border-radius:15px; border:1px solid #334155; width:280px; text-align:center;">
-            <p style="color:#e2e8f0; font-size:14px;">{{ exp }}</p>
+            <h3 style="color:#38bdf8;">Bio</h3>
+            <p style="color:#e2e8f0; font-size:15px; line-height:1.6;">{{ profile.bio }}</p>
         </div>
-        {% endfor %}
-    </div>
-    {% endif %}
 
-    <!-- GOALS -->
-    {% if profile.goals %}
-    <div style="max-width:900px; margin:50px auto; display:flex; flex-wrap:wrap; justify-content:center; gap:25px;">
-        {% for goal in profile.goals.splitlines %}
+        <!-- Experience -->
+        {% if profile.experience %}
         <div
             style="background:#1e293b; padding:20px; border-radius:15px; border:1px solid #334155; width:280px; text-align:center;">
-            <p style="color:#fbbf24; font-size:14px;">{{ goal }}</p>
+            <h3 style="color:#38bdf8;">Experience</h3>
+            <p style="color:#e2e8f0; font-size:15px; line-height:1.6;">{{ profile.experience }}</p>
         </div>
-        {% endfor %}
+        {% endif %}
+
+        <!-- Goals -->
+        {% if profile.goals %}
+        <div
+            style="background:#1e293b; padding:20px; border-radius:15px; border:1px solid #334155; width:280px; text-align:center;">
+            <h3 style="color:#38bdf8;">Goals</h3>
+            <p style="color:#fbbf24; font-size:15px; line-height:1.6;">{{ profile.goals }}</p>
+        </div>
+        {% endif %}
+
     </div>
-    {% endif %}
 
     <!-- FOOTER -->
     <div style="background:#020617; padding:20px; text-align:center; color:#64748b; margin-top:50px;">
